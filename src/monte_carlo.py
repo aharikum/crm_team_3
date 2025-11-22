@@ -74,7 +74,9 @@ def run_monte_carlo_simulation(mitigation_weight=0.0, n_iterations=N_ITER):
       2. Sample number of attempts per insider ~ Poisson(ATTEMPTS_MEAN)
       3. Sample number of successful attacks ~ Binomial(attempts, Vulnerability * (1 - weight))
       4. Sample loss per attack => Lognormal(loss_range)
-      5. Aggregate losses by role and total
+      5. Aggregate losses by role and tota
+
+    Reference: https://www.geeksforgeeks.org/python/monte-carlo-integration-in-python/ 
     """
     # Calculate effective vulnerability after mitigation. effective vulnerability = base_vulnerability (75%) with no mitigation
     effective_vulnerability = BASE_VULNERABILITY * (1 - mitigation_weight)
