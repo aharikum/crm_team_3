@@ -36,6 +36,7 @@ The pipeline consists of three integrated stages:
 
 
 ![Architecture Diagram](/Docs/architecture.png)
+
 *Figure: Architecture diagram*
 
 ---
@@ -156,7 +157,7 @@ These patterns are based on the [CERT Insider Threat Research](https://ieeexplor
 
 The Factor identification for BillyBank based off on the factors from the [SEI Dataset](https://www.sei.cmu.edu/library/insider-threat-test-dataset/) can be found in this - [Dataset Info](/Docs/Dataset%20info.pdf)
 
-The output of this script can be found in - [BillyBank Activity](/billybank_activity_updated.csv)
+The output of this script can be found in - [BillyBank Activity](/Outputs/Dataset/billybank_activity.csv)
 
 ---
 
@@ -198,7 +199,7 @@ The analysis produces a probability matrix showing risk by role AND region:
 | Contractor | 5.41% | 7.55% | 5.00% |
 | Exec_Assistant | 0.00% | 0.00% | 0.00% |
 
-This can be viewed as a heatmap [here](/risk_analysis/risk_heatmap.jpg) and as a csv [here](/risk_analysis/risk_scores_by_region.csv).
+This can be viewed as a heatmap [here](/Outputs/risk_analysis/risk_heatmap.jpg) and as a csv [here](/Outputs/risk_analysis/risk_scores_by_region.csv).
 Since the dataset we generated remains the same, the above two files are also constant as it describes the risk in the given year.
 
 ---
@@ -252,7 +253,7 @@ For each role:
 
 ### Loss Magnitude Mapping
 
-Losses are mapped to role based on real-world incident data. This can be viewed from the [employee Loss Ranges](/employee_loss_ranges.csv) file.
+Losses are mapped to role based on real-world incident data. This can be viewed from the [employee Loss Ranges](/Docs/employee_loss_ranges.csv) file.
 
 ### Why do we use a Lognormal Distribution 
 
@@ -298,9 +299,9 @@ Complete information about the mitigation research can be found here - [Cost Sca
  
 
 This is the last stage of our backend. The file outputs from this script are:
-- [mitigation_comparison.jpeg](/monte_carlo_results/mitigation_comparison.jpg) - This shows the EAL per role as a comparison with and without any mitigation
-- [monte_carlo_loss_distribution.jpg](/monte_carlo_results/monte_carlo_loss_distribution.jpg) - This is an overlapping histogram that shows the monte carlo loss per iteration for each role
-- [monte_carlo_resuts.json](/monte_carlo_results/monte_carlo_results.json) - A json output of the above two information as well as an aggregated company loss statistics for the front end to display.
+- [mitigation_comparison.jpeg](/Outputs/monte_carlo_results/mitigation_comparison.jpg) - This shows the EAL per role as a comparison with and without any mitigation
+- [monte_carlo_loss_distribution.jpg](/Outputs/monte_carlo_results/monte_carlo_loss_distribution.jpg) - This is an overlapping histogram that shows the monte carlo loss per iteration for each role
+- [monte_carlo_resuts.json](/Outputs/monte_carlo_results/monte_carlo_results.json) - A json output of the above two information as well as an aggregated company loss statistics for the front end to display.
 
 ---
 
