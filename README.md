@@ -424,7 +424,9 @@ The generated data is calibrated against industry research:
 - cert
 - sources
   
-  https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html; https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
+  https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html
+
+  https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
 
   https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview
 
@@ -467,6 +469,40 @@ The generated data is calibrated against industry research:
   https://support.docusign.com/s/document-item?topicId=gpa1578456339545.html
 
   https://nvd.nist.gov/800-53
+
+  https://www.cisa.gov/insider-threat-mitigation; https://www.cyberark.com/resources
+
+  https://www.microsoft.com/en-us/security/business/risk-management/insider-risk-management
+
+  https://www.broadcom.com/products/cybersecurity/information-protection/data-loss-prevention
+
+  https://www.splunk.com/en_us/data-insider/what-is-user-and-entity-behavior-analytics.html
+
+  https://cloud.google.com/chronicle
+
+  https://pages.nist.gov/800-63-4/sp800-63b.html
+
+  https://fidoalliance.org
+
+  https://www.ibm.com/products/guardium-data-protection
+
+  https://www.imperva.com/learn/data-security/database-activity-monitoring-dam/
+
+  https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
+
+  https://learn.microsoft.com/en-us/azure/confidential-ledger/overview
+
+  https://support.docusign.com
+
+  https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-3.pdf
+
+  https://datatracker.ietf.org/doc/html/rfc5848
+
+  https://nvd.nist.gov/800-53
+
+  https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final
+
+  
   
 
 Prompts from GPT
