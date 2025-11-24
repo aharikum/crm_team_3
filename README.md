@@ -422,7 +422,52 @@ The generated data is calibrated against industry research:
 ## References & Citations
 
 - cert
-- sources 
+- sources
+  
+  https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html; https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
+
+  https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview
+
+  https://learn.microsoft.com/en-us/azure/confidential-ledger/overview
+
+  https://cloud.google.com/storage/docs/bucket-lock
+
+  https://datatracker.ietf.org/doc/html/rfc5848
+
+  https://www.splunk.com/en_us/products/pricing/faqs/cyber-security.html
+
+  https://www.microsoft.com/en-us/security/business/siem-and-xdr/microsoft-sentinel
+
+  https://cloud.google.com/security/products/security-operations
+
+  https://www.elastic.co/docs/solutions/security
+
+  https://www.ibm.com/products/guardium-data-protection
+
+  https://www.imperva.com/products/data-activity-monitoring/
+
+  https://www.varonis.com/data-security-platform
+
+  https://docs.cyberark.com/pam-self-hosted/latest/en/content/pasimp/privileged-session%20manager-introduction.htm
+
+  https://docs.delinea.com/online-help/secret-server/session-recording/index.htm
+
+  https://www.beyondtrust.com/docs/privileged-identity/app-launcher-and-recording/configure/session-recording-settings.htm
+
+  https://support.oneidentity.com/technical-documents/safeguard-for-privileged-sessions/7.3.1/administration-guide
+
+  https://learn.microsoft.com/en-us/purview/insider-risk-management
+
+  https://www.broadcom.com/products/cybersecurity/information-protection/data-loss-prevention
+
+  https://docs.netskope.com/en/data-loss-prevention/
+
+  https://pages.nist.gov/800-63-4/sp800-63b.html
+
+  https://support.docusign.com/s/document-item?topicId=gpa1578456339545.html
+
+  https://nvd.nist.gov/800-53
+  
 
 Prompts from GPT
 
