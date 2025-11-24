@@ -10,7 +10,10 @@ st.set_page_config(
     layout="wide",
 )
 
-OUTPUT_DIR = Path("../Outputs")
+BASE_DIR = Path(__file__).resolve().parent.parent   
+OUTPUT_DIR = BASE_DIR / "Outputs"
+OUTPUT_DIR.mkdir(exist_ok=True)
+
 HEATMAP = OUTPUT_DIR / "risk_analysis" / "risk_heatmap.jpg"
 LOSS_DIST_IMG = OUTPUT_DIR / "monte_carlo_results" / "monte_carlo_loss_distribution.jpg"
 COMPARISON_IMG = OUTPUT_DIR / "monte_carlo_results" / "mitigation_comparison.jpg"
@@ -34,7 +37,7 @@ def load_software_solutions(csv_path):
 
     return software_solutions
 
-SOFTWARE_SOLUTIONS = load_software_solutions("../Docs/insider_threat_solutions_weights.csv")
+SOFTWARE_SOLUTIONS = load_software_solutions(BASE_DIR / "Docs/insider_threat_solutions_weights.csv")
 
 def calculate_weights_and_costs(selections):
     mitigation_weight = 0.0

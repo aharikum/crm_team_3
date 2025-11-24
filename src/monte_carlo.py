@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import json
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent   # moves from src/ → project root
+BASE_DIR = Path(__file__).resolve().parent.parent   
 OUTPUT_DIR = BASE_DIR / "Outputs"
 OUTPUT_DIR.mkdir(exist_ok=True)
 
