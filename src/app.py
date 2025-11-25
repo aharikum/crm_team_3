@@ -108,12 +108,12 @@ def main():
         with simulate_col:
             run_clicked = st.button("Simulate", type="primary")
         with select_col:
-            select_all = st.button("Select All", type="secondary", on_click=lambda: [
+            st.button("Select All", type="secondary", on_click=lambda: [
                 st.session_state.update({meta["key"]: True})
                 for _, meta in SOFTWARE_SOLUTIONS.items()
             ])
         with deselect_col:
-            deselect_all = st.button("Deselect All", type="secondary", on_click=lambda: [
+            st.button("Deselect All", type="secondary", on_click=lambda: [
                 st.session_state.update({meta["key"]: False})
                 for _, meta in SOFTWARE_SOLUTIONS.items()
             ])
