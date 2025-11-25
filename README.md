@@ -26,9 +26,9 @@ This project models insider-threat cyber risk for a multinational financial inst
 
 Some process artifacts (produced along the way, but not quite our final deliverables) include:
 - [Milestone 1 Executive Summary](/Docs/CRM_Project_Milestone_1_%20Executive_Summary.pdf)
-- [Milestone 2 Progress Report](/Docs/CRM Project Milestone 2.pdf)
-- [RACI Matrix](Docs/CRM RACI Matrix - Sheet1.pdf)
-- [Team Meeting Agenda and Notes](Docs/CRM Project Timeline _ Meeting Agendas.pdf)
+- [Milestone 2 Progress Report](/Docs/CRM_Project_Milestone_2.pdf)
+- [RACI Matrix](Docs/CRM_RACI_Matrix.pdf)
+- [Team Meeting Agenda and Notes](Docs/CRM_Project_Timeline.pdf)
 
 Other deliverables (in the Docs/ folder) will be referenced and linked accordingly later in this README. 
 
@@ -439,77 +439,77 @@ Adit Verma, Doc Rock
 
 ### SEI CERT Insider Threat Dataset
 
-https://www.kaggle.com/datasets/nitishabharathi/cert-insider-threat
-https://www.sei.cmu.edu/library/insider-threat-test-dataset/ 
+- https://www.kaggle.com/datasets/nitishabharathi/cert-insider-threat
+- https://www.sei.cmu.edu/library/insider-threat-test-dataset/ 
 
 ### Other Links Referenced
   
-https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html
-https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
-https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview
-https://learn.microsoft.com/en-us/azure/confidential-ledger/overview
-https://cloud.google.com/storage/docs/bucket-lock
-https://datatracker.ietf.org/doc/html/rfc5848
-https://www.splunk.com/en_us/products/pricing/faqs/cyber-security.html
-https://www.microsoft.com/en-us/security/business/siem-and-xdr/microsoft-sentinel
-https://cloud.google.com/security/products/security-operations
-https://www.elastic.co/docs/solutions/security
-https://www.ibm.com/products/guardium-data-protection
-https://www.imperva.com/products/data-activity-monitoring/
-https://www.varonis.com/data-security-platform
-https://docs.cyberark.com/pam-self-hosted/latest/en/content/pasimp/privileged-session%20manager-introduction.htm
-https://docs.delinea.com/online-help/secret-server/session-recording/index.htm
-https://www.beyondtrust.com/docs/privileged-identity/app-launcher-and-recording/configure/session-recording-settings.htm
-https://support.oneidentity.com/technical-documents/safeguard-for-privileged-sessions/7.3.1/administration-guide
-https://learn.microsoft.com/en-us/purview/insider-risk-management
-https://www.broadcom.com/products/cybersecurity/information-protection/data-loss-prevention
-https://docs.netskope.com/en/data-loss-prevention/
-https://pages.nist.gov/800-63-4/sp800-63b.html
-https://support.docusign.com/s/document-item?topicId=gpa1578456339545.html
-https://nvd.nist.gov/800-53
-https://www.cisa.gov/insider-threat-mitigation; https://www.cyberark.com/resources
-https://www.microsoft.com/en-us/security/business/risk-management/insider-risk-management
-https://www.broadcom.com/products/cybersecurity/information-protection/data-loss-prevention
-https://www.splunk.com/en_us/data-insider/what-is-user-and-entity-behavior-analytics.html
-https://cloud.google.com/chronicle
-https://pages.nist.gov/800-63-4/sp800-63b.html
-https://fidoalliance.org
-https://www.ibm.com/products/guardium-data-protection
-https://www.imperva.com/learn/data-security/database-activity-monitoring-dam/
-https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
-https://learn.microsoft.com/en-us/azure/confidential-ledger/overview
-https://support.docusign.com
-https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-3.pdf
-https://datatracker.ietf.org/doc/html/rfc5848
-https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final
-https://en.wikipedia.org/wiki/2012_JPMorgan_Chase_trading_loss
-https://elischolar.library.yale.edu/cgi/viewcontent.cgi?article=1013&context=journal-of-financial-crises
-https://www.federalreserve.gov/newsevents/pressreleases/enforcement20240314a.htm
-https://www.cftc.gov/PressRoom/PressReleases/8914-24
-https://www.justice.gov/usao-edny/pr/former-jp-morgan-chase-bank-employee-sentenced-four-years-prison-selling-customer
-https://www.reuters.com/article/idUSBREA4D0G3/
-https://www.sec.gov/files/litigation/admin/2018/34-83858.pdf
-https://www.sfchronicle.com/bayarea/article/bay-area-bank-worker-charged-stealing-nearly-1-20363841.php
-https://apnews.com/article/53ef64672b07976ae5d3960e75246285
-https://www.justice.gov/usao-nj/pr/td-bank-insider-pleads-guilty-accepting-bribes-fraudulently-open-more-100-bank-accounts
-https://www.justice.gov/archives/opa/pr/td-bank-insider-arrested-and-charged-facilitating-money-laundering
-https://www.justice.gov/usao-wdmo/pr/former-bank-employee-pleads-guilty-24-million-embezzlement-scheme
-https://www.fayettenewspapers.com/stories/bond-company-sues-exchange-bank-over-money-embezzled-by-former-employee%2C165810
-https://www.justice.gov/usao-ct/pr/bank-general-counsel-sentenced-4-years-prison-74-million-embezzlement-scheme
-https://www.irs.gov/compliance/criminal-investigation/bank-general-counsel-pleads-guilty-to-offenses-stemming-from-7-point-4-million-embezzlement-scheme
-https://abcnews.go.com/US/bank-manager-sentenced-position-steal-200000-directly-customer/story?id=115595925
-https://www.wsj.com/finance/regulation/morgan-stanley-is-fined-over-first-republic-insider-sales-48ad84bf
-https://www.americanbanker.com/news/finwise-waited-a-year-to-disclose-a-breach-affecting-689-000
-https://www.bankingdive.com/news/finwise-data-breach-former-employee-american-first-court-plaintiff-689k/761026/
-https://www.theguardian.com/business/2008/jan/24/creditcrunch.banking
-https://en.wikipedia.org/wiki/2008_Soci%C3%A9t%C3%A9_G%C3%A9n%C3%A9rale_trading_loss
-https://en.wikipedia.org/wiki/2011_UBS_rogue_trader_scandal
-https://www.fca.org.uk/publication/final-notices/ubs-ag.pdf
-https://www.investopedia.com/ask/answers/08/nick-leeson-barings-bank.asp
-https://en.wikipedia.org/wiki/John_Rusnak
-https://www.justice.gov/archive/dag/cftf/chargingdocs/allfirst.pdf
-https://www.latimes.com/archives/la-xpm-1995-09-27-fi-50502-story.html
-https://www.theguardian.com/business/2020/jul/24/goldman-sachs-settle-1mdb-corruption-scandal-malaysia
+- https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html
+- https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
+- https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview
+- https://learn.microsoft.com/en-us/azure/confidential-ledger/overview
+- https://cloud.google.com/storage/docs/bucket-lock
+- https://datatracker.ietf.org/doc/html/rfc5848
+- https://www.splunk.com/en_us/products/pricing/faqs/cyber-security.html
+- https://www.microsoft.com/en-us/security/business/siem-and-xdr/microsoft-sentinel
+- https://cloud.google.com/security/products/security-operations
+- https://www.elastic.co/docs/solutions/security
+- https://www.ibm.com/products/guardium-data-protection
+- https://www.imperva.com/products/data-activity-monitoring/
+- https://www.varonis.com/data-security-platform
+- https://docs.cyberark.com/pam-self-hosted/latest/en/content/pasimp/privileged-session%20manager-introduction.htm
+- https://docs.delinea.com/online-help/secret-server/session-recording/index.htm
+- https://www.beyondtrust.com/docs/privileged-identity/app-launcher-and-recording/configure/session-recording-settings.htm
+- https://support.oneidentity.com/technical-documents/safeguard-for-privileged-sessions/7.3.1/administration-guide
+- https://learn.microsoft.com/en-us/purview/insider-risk-management
+- https://www.broadcom.com/products/cybersecurity/information-protection/data-loss-prevention
+- https://docs.netskope.com/en/data-loss-prevention/
+- https://pages.nist.gov/800-63-4/sp800-63b.html
+- https://support.docusign.com/s/document-item?topicId=gpa1578456339545.html
+- https://nvd.nist.gov/800-53
+- https://www.cisa.gov/insider-threat-mitigation; https://www.cyberark.com/resources
+- https://www.microsoft.com/en-us/security/business/risk-management/insider-risk-management
+- https://www.broadcom.com/products/cybersecurity/information-protection/data-loss-prevention
+- https://www.splunk.com/en_us/data-insider/what-is-user-and-entity-behavior-analytics.html
+- https://cloud.google.com/chronicle
+- https://pages.nist.gov/800-63-4/sp800-63b.html
+- https://fidoalliance.org
+- https://www.ibm.com/products/guardium-data-protection
+- https://www.imperva.com/learn/data-security/database-activity-monitoring-dam/
+- https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
+- https://learn.microsoft.com/en-us/azure/confidential-ledger/overview
+- https://support.docusign.com
+- https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-3.pdf
+- https://datatracker.ietf.org/doc/html/rfc5848
+- https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final
+- https://en.wikipedia.org/wiki/2012_JPMorgan_Chase_trading_loss
+- https://elischolar.library.yale.edu/cgi/viewcontent.cgi?article=1013&context=journal-of-financial-crises
+- https://www.federalreserve.gov/newsevents/pressreleases/enforcement20240314a.htm
+- https://www.cftc.gov/PressRoom/PressReleases/8914-24
+- https://www.justice.gov/usao-edny/pr/former-jp-morgan-chase-bank-employee-sentenced-four-years-prison-selling-customer
+- https://www.reuters.com/article/idUSBREA4D0G3/
+- https://www.sec.gov/files/litigation/admin/2018/34-83858.pdf
+- https://www.sfchronicle.com/bayarea/article/bay-area-bank-worker-charged-stealing-nearly-1-20363841.php
+- https://apnews.com/article/53ef64672b07976ae5d3960e75246285
+- https://www.justice.gov/usao-nj/pr/td-bank-insider-pleads-guilty-accepting-bribes-fraudulently-open-more-100-bank-accounts
+- https://www.justice.gov/archives/opa/pr/td-bank-insider-arrested-and-charged-facilitating-money-laundering
+- https://www.justice.gov/usao-wdmo/pr/former-bank-employee-pleads-guilty-24-million-embezzlement-scheme
+- https://www.fayettenewspapers.com/stories/bond-company-sues-exchange-bank-over-money-embezzled-by-former-employee%2C165810
+- https://www.justice.gov/usao-ct/pr/bank-general-counsel-sentenced-4-years-prison-74-million-embezzlement-scheme
+- https://www.irs.gov/compliance/criminal-investigation/bank-general-counsel-pleads-guilty-to-offenses-stemming-from-7-point-4-million-embezzlement-scheme
+- https://abcnews.go.com/US/bank-manager-sentenced-position-steal-200000-directly-customer/story?id=115595925
+- https://www.wsj.com/finance/regulation/morgan-stanley-is-fined-over-first-republic-insider-sales-48ad84bf
+- https://www.americanbanker.com/news/finwise-waited-a-year-to-disclose-a-breach-affecting-689-000
+- https://www.bankingdive.com/news/finwise-data-breach-former-employee-american-first-court-plaintiff-689k/761026/
+- https://www.theguardian.com/business/2008/jan/24/creditcrunch.banking
+- https://en.wikipedia.org/wiki/2008_Soci%C3%A9t%C3%A9_G%C3%A9n%C3%A9rale_trading_loss
+- https://en.wikipedia.org/wiki/2011_UBS_rogue_trader_scandal
+- https://www.fca.org.uk/publication/final-notices/ubs-ag.pdf
+- https://www.investopedia.com/ask/answers/08/nick-leeson-barings-bank.asp
+- https://en.wikipedia.org/wiki/John_Rusnak
+- https://www.justice.gov/archive/dag/cftf/chargingdocs/allfirst.pdf
+- https://www.latimes.com/archives/la-xpm-1995-09-27-fi-50502-story.html
+- https://www.theguardian.com/business/2020/jul/24/goldman-sachs-settle-1mdb-corruption-scandal-malaysia
 
 ### Prompts from GPT
 
