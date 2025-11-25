@@ -564,6 +564,7 @@ Prompts from GPT
 Insider Threat Table Prompts
 
 <img width="562" height="148" alt="Screenshot 2025-11-24 at 9 52 31 PM" src="https://github.com/user-attachments/assets/983f9455-cab9-4baf-9fd8-d7cf22537163" />
+
 This is what got us started with the cases, and then found sources based on them and began creating notes from sources that are lsited above.
 
 <img width="643" height="497" alt="Screenshot 2025-11-24 at 9 51 35 PM" src="https://github.com/user-attachments/assets/dac79402-14f2-49b9-b262-dae298f4b1d0" />
