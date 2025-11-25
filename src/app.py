@@ -207,10 +207,7 @@ def main():
         if st.button("Deselect all", key="deselect_all_btn", use_container_width=True):
             st.session_state["deselect_all"] = True
             st.rerun()
-    
-    st.markdown("---")
-    _, col2, _ = st.columns([1,2,1])
-    with col2:
+    with button3:
         run_clicked = st.button("Run Simulation", type="primary")
 
     if run_clicked:
