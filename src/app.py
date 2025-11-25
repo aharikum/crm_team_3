@@ -117,27 +117,28 @@ def main():
                 generate_monte_carlo_results(mitigation_weight)
             st.success("Simulation complete. Figures and values updated below.")
 
-        st.markdown("### Loss Summary")
-        stats = load_total_company_loss()
-        if stats is None:
-            st.info("No Monte Carlo statistics found yet. Try running the Monte Carlo simulation again.")
-        else:
-            mean_eal = stats.get("mean_eal")
-            p5 = stats.get("p5")
-            median = stats.get("median")
-            p95 = stats.get("p95")
-            min_loss = stats.get("min")
-            max_loss = stats.get("max")
+        with st.container(border=True):
+            st.markdown("### Loss Summary")
+            stats = load_total_company_loss()
+            if stats is None:
+                st.info("No Monte Carlo statistics found yet. Try running the Monte Carlo simulation again.")
+            else:
+                mean_eal = stats.get("mean_eal")
+                p5 = stats.get("p5")
+                median = stats.get("median")
+                p95 = stats.get("p95")
+                min_loss = stats.get("min")
+                max_loss = stats.get("max")
 
-            if mean_eal is not None:
-                st.write(f"##### Mean EAL (Total Company Loss): \${mean_eal:,.0f}")
-            if p5 is not None and p95 is not None:
-                st.write(f"- EAL for a good year: \${p5:,.0f}")
-                st.write(f"- EAL for a bad year: \${p95:,.0f}")
-            if median is not None:
-                st.write(f"- Median: \${median:,.0f}")
-            if min_loss is not None and max_loss is not None:
-                st.write(f"- Min / Max: \${min_loss:,.0f} / \${max_loss:,.0f}")
+                if mean_eal is not None:
+                    st.write(f"##### Mean EAL (Total Company Loss): \${mean_eal:,.0f}")
+                if p5 is not None and p95 is not None:
+                    st.write(f"- EAL for a good year: \${p5:,.0f}")
+                    st.write(f"- EAL for a bad year: \${p95:,.0f}")
+                if median is not None:
+                    st.write(f"- Median: \${median:,.0f}")
+                if min_loss is not None and max_loss is not None:
+                    st.write(f"- Min / Max: \${min_loss:,.0f} / \${max_loss:,.0f}")
 
     with left_col:
         st.image(str(COMPARISON_IMG), caption="Baseline vs Mitigated Comparison", width="stretch")
