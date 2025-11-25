@@ -142,7 +142,7 @@ def main():
 
     with left_col:
         st.image(str(COMPARISON_IMG), caption="Baseline vs Mitigated Comparison", width="stretch")
-        st.image(str(LOSS_DIST_IMG), caption="Insier Threat Loss Distribution", width="stretch")
+        st.image(str(LOSS_DIST_IMG), caption="Insider Threat Loss Distribution", width="stretch")
 
 if __name__ == "__main__":
     main()
