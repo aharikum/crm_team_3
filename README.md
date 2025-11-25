@@ -394,6 +394,14 @@ generate_monte_carlo_results(mitigation_weight=0.0)
 # 50% mitigation
 generate_monte_carlo_results(mitigation_weight=0.5)
 ```
+
+### Launching a Local Interactive Front End
+
+```bash
+cd src/
+streamlit run app.py --server.port 8080
+```
+
 ---
 
 ## Validation & Calibration
