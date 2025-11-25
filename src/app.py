@@ -121,7 +121,7 @@ def main():
         # st.markdown("#### ")
         st.markdown("""
         <div class="info">
-        <h4>Insigts from Dataset</h4>
+        <h4>Insights from Dataset</h4>
         <strong>Highest Risk Roles:</strong>
         <ul>
             <li>Contractors in EU (7.55%)</li>
