@@ -224,10 +224,12 @@ def main():
     left_col, right_col = st.columns([3,2])
     results = st.session_state.simulation_results
     with left_col:
-        st.pyplot(results['fig_comparison'], caption="Baseline vs Mitigated Comparison")
+        st.pyplot(results['fig_comparison'])
+        st.caption("Baseline vs Mitigated Comparison")
         #st.image(str(COMPARISON_IMG), caption="Baseline vs Mitigated Comparison", use_container_width=True)
         st.markdown("---")
-        st.pyplot(results['fig_distribution'], caption="Insider Threat Loss Distribution")
+        st.pyplot(results['fig_distribution'])
+        st.caption("Insider Threat Loss Distribution")
         #st.image(str(LOSS_DIST_IMG), caption="Insider Threat Loss Distribution", use_container_width=True)
 
     with right_col:
