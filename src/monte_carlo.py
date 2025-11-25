@@ -274,9 +274,9 @@ def generate_monte_carlo_results(mitigation_weight=0.0):
     
     plt.tight_layout()
     plot_path = OUTPUT_DIR_MONTE / 'monte_carlo_loss_distribution.jpg'
-    plt.savefig(plot_path, dpi=300, bbox_inches='tight', format='jpg')
-    plt.close()
-
+    #plt.savefig(plot_path, dpi=300, bbox_inches='tight', format='jpg')
+    #plt.close()
+    fig_distribution = fig
     
     # Bar chart for comparison against no mitigation
     fig, ax = plt.subplots(1, 1, figsize=(14, 8))
@@ -330,14 +330,19 @@ def generate_monte_carlo_results(mitigation_weight=0.0):
     
     plt.tight_layout()
     comparison_path = OUTPUT_DIR_MONTE / 'mitigation_comparison.jpg'
-    plt.savefig(comparison_path, dpi=300, bbox_inches='tight', format='jpg')
-    plt.close()
-        
+    #plt.savefig(comparison_path, dpi=300, bbox_inches='tight', format='jpg')
+    #plt.close()
+    fig_comparison = fig
+    return {
+        'stats': output_data,
+        'fig_distribution': fig_distribution,
+        'fig_comparison': fig_comparison
+    }   
     
 
 if __name__ == "__main__":
     # Example: Run with no mitigation
-    generate_monte_carlo_results(mitigation_weight=0.7)
+    generate_monte_carlo_results(mitigation_weight=0.0)
     
     # Example: Run with 60% mitigation
     # generate_monte_carlo_results(mitigation_weight=0.6)

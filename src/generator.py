@@ -6,8 +6,8 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 # seed for reproducability
-random.seed(1000)
-np.random.seed(1000)
+random.seed(1337)
+np.random.seed(1337)
 
 # Organization: how many users per role, regions, days
 NUM_USERS_BY_ROLE = {

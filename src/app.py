@@ -91,9 +91,20 @@ def load_total_company_loss():
         return None
 
 def main():
+    if 'simulation_results' not in st.session_state:
+        st.session_state.simulation_results = None
+    if 'baseline_generated' not in st.session_state:
+        st.session_state.baseline_generated = False
+    
     st.markdown("<center><h1>BillyBank Insider Risk Dashboard</h1></center>", unsafe_allow_html=True)
     st.markdown("---")
 
+    if not st.session_state.baseline_generated:
+        with st.spinner("Generating Baseline"):
+            results = generate_monte_carlo_results(0.0)
+            st.session_state.simulation_results = results
+            st.session_state.baseline_generated = True
+    
     # Section 1: Heatmap / Loss Distribution
     # _, center_col, _ = st.columns([0.25, 0.5, 0.25])
     st.markdown('<h2 class="section"> Current Risk Analysis</h2>', unsafe_allow_html=True)
@@ -113,10 +124,10 @@ def main():
         <h4>Insigts from Dataset</h4>
         <strong>Highest Risk Roles:</strong>
         <ul>
-            <li>IT Admins in APAC (5.88%)</li>
-            <li>Traders in EU (5.88%)</li>
-            <li>Contractors in NA (4.44%)</li>
-            <li>Traders in NA (3.23%)</li>
+            <li>Contractors in EU (7.55%)</li>
+            <li>IT Admins in NA (7.14%)</li>
+            <li>Contractors in NA (5.41%)</li>
+            <li>Traders in EU (3.23%)</li>
         </ul>
         
         <strong>Risk Factors:</strong>
@@ -204,20 +215,24 @@ def main():
 
     if run_clicked:
         with st.spinner("Running Monte Carlo simulation..."):
-            generate_monte_carlo_results(mitigation_weight)
+            results = generate_monte_carlo_results(mitigation_weight)
+            st.session_state.simulation_results = results
         st.success("Simulation complete. Figures and values updated below.")
 
     st.markdown("---")
     st.markdown('<h2 class=section>Simulation & Financial Impact</h2>', unsafe_allow_html=True)
     left_col, right_col = st.columns([3,2])
+    results = st.session_state.simulation_results
     with left_col:
-        st.image(str(COMPARISON_IMG), caption="Baseline vs Mitigated Comparison", use_container_width=True)
+        st.pyplot(results['fig_comparison'])
+        #st.image(str(COMPARISON_IMG), caption="Baseline vs Mitigated Comparison", use_container_width=True)
         st.markdown("---")
-        st.image(str(LOSS_DIST_IMG), caption="Insider Threat Loss Distribution", use_container_width=True)
+        st.pyplot(results['fig_distribution'])
+        #st.image(str(LOSS_DIST_IMG), caption="Insider Threat Loss Distribution", use_container_width=True)
 
     with right_col:
         st.markdown("### Financial Impact summary")
-        stats = load_total_company_loss()
+        stats = results['stats']['total_company_loss']
         if stats is None:
             st.info("No Monte Carlo statistics found yet. Try running the Monte Carlo simulation again.")
         else:
