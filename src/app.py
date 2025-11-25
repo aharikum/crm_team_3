@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide",
 )
 
-BASE_DIR = Path(__file__).resolve().parent.parent   
+BASE_DIR = Path(__file__).resolve().parent.parent
 OUTPUT_DIR = BASE_DIR / "Outputs"
 OUTPUT_DIR.mkdir(exist_ok=True)
 
@@ -63,15 +63,14 @@ def load_total_company_loss():
 
 def main():
     st.markdown("<center><h1>BillyBank Insider Risk Dashboard</h1></center>", unsafe_allow_html=True)
-
     st.markdown("---")
 
     # Section 1: Heatmap / Loss Distribution
-    st.markdown("## 1. Current Risk Analysis Heatmap")
-    left_col, center_col, right_col = st.columns([0.25, 0.5, 0.25])
+    _, center_col, _ = st.columns([0.25, 0.5, 0.25])
 
     if HEATMAP.exists():
         with center_col:
+            st.markdown("<center><h2>Current Risk Analysis Heatmap</h2</center>", unsafe_allow_html=True)
             st.image(str(HEATMAP), caption="Risk Analysis Heatmap", width="stretch")
     else:
         st.info(
@@ -82,11 +81,10 @@ def main():
     st.markdown("---")
 
     # Section 2: Select Mitigation Controls
-    st.markdown("## 2. Configure Mitigation Controls")
+    st.markdown("<center><h2>Configure Mitigation Controls</h2></center>", unsafe_allow_html=True)
 
     selections = {}
-    # col1, col2 = st.columns([0.2, 0.8])
-    # col1, col2 = st.columns([0.9, 0.1])
+    left_col, _, right_col = st.columns([0.45, 0.05, 0.5])
 
     sorted_software_solutions = sorted(
         SOFTWARE_SOLUTIONS.items(),
@@ -94,66 +92,35 @@ def main():
         reverse=True
     )
 
-    for i, (label, meta) in enumerate(sorted_software_solutions):
-        # with (col1 if i % 2 == 0 else col2):
-        # with col1:
-            # selections[meta["key"]] = st.checkbox(
-            #     f"{label} (${meta['cost']:,}/year)",
-            #     value=False,
-            #     key=meta["key"],
-            # )
-        selections[meta["key"]] = st.checkbox(
-            f"{label} (${meta['cost']:,}/year)",
-            value=False,
-            key=meta["key"],
-        )
+    for label, meta in sorted_software_solutions:
+        with right_col:
+            selections[meta["key"]] = st.checkbox(
+                f"{label} (${meta['cost']:,}/year)",
+                value=False,
+                key=meta["key"],
+            )
 
     mitigation_weight, total_cost = calculate_weights_and_costs(selections)
 
-    st.write(f"**Total Annual Cost of Selected Controls:** ${total_cost:,}")
-
-    run_clicked = st.button("Simulate", type="primary")
-    if run_clicked:
-        with st.spinner("Running backend Monte Carlo simulation..."):
-            generate_monte_carlo_results(mitigation_weight)
-        st.success("Simulation complete. Dashboard updated below.")
-
-    st.markdown("---")
-
-    # Section 3: Monte Carlo Outputs (images + JSON stats)
-    left_col, right_col = st.columns(2)
-
-    with left_col:
-        st.markdown("### 3.1 Loss Distribution & Mitigation Comparison")
-
-        if COMPARISON_IMG.exists():
-            st.image(str(COMPARISON_IMG), caption="Baseline vs Mitigated Comparison", width="stretch")
-        else:
-            st.warning(
-                f"`{COMPARISON_IMG.name}` not found in `{OUTPUT_DIR}`. "
-                "Run the simulation to generate it."
-            )
-
-        st.markdown("---")
-
-        if LOSS_DIST_IMG.exists():
-            st.image(str(LOSS_DIST_IMG), caption="Insider Threat Loss Distribution", width="stretch")
-        else:
-            st.warning(
-                f"`{LOSS_DIST_IMG.name}` not found in `{OUTPUT_DIR}`. "
-                "Run the simulation to generate it."
-            )
-
     with right_col:
-        st.markdown("### 3.2 Total Company Loss Summary")
+        st.write(f"**Total Annual Cost of Selected Controls:** \${total_cost:,}")
+        simulate_col, deselect_col = st.columns([0.15, 0.85])
+        with simulate_col:
+            run_clicked = st.button("Simulate", type="primary")
+        with deselect_col:
+            deselect = st.button("Deselect all", type="secondary", on_click=lambda: [
+                st.session_state.update({meta["key"]: False})
+                for _, meta in SOFTWARE_SOLUTIONS.items()
+            ])
+        if run_clicked:
+            with st.spinner("Running Monte Carlo simulation..."):
+                generate_monte_carlo_results(mitigation_weight)
+            st.success("Simulation complete. Figures and values updated below.")
 
+        st.markdown("### Loss Summary")
         stats = load_total_company_loss()
         if stats is None:
-            st.info(
-                "No Monte Carlo statistics found yet. "
-                f"Expected a `total_company_loss` section in `{RESULTS_JSON.name}`. "
-                "Run the simulation to generate it."
-            )
+            st.info("No Monte Carlo statistics found yet. Try running the Monte Carlo simulation again.")
         else:
             mean_eal = stats.get("mean_eal")
             p5 = stats.get("p5")
@@ -163,14 +130,18 @@ def main():
             max_loss = stats.get("max")
 
             if mean_eal is not None:
-                st.metric("Mean EAL (Total Company Loss)", f"${mean_eal:,.0f}")
-            st.write("**Distribution (Total Company Loss):**")
+                st.write(f"##### Mean EAL (Total Company Loss): \${mean_eal:,.0f}")
             if p5 is not None and p95 is not None:
-                st.write(f"- 5th-95th percentile: \${p5:,.0f} - \${p95:,.0f}")
+                st.write(f"- EAL for a good year: \${p5:,.0f}")
+                st.write(f"- EAL for a bad year: \${p95:,.0f}")
             if median is not None:
                 st.write(f"- Median: \${median:,.0f}")
             if min_loss is not None and max_loss is not None:
                 st.write(f"- Min / Max: \${min_loss:,.0f} / \${max_loss:,.0f}")
+
+    with left_col:
+        st.image(str(COMPARISON_IMG), caption="Baseline vs Mitigated Comparison", width="stretch")
+        st.image(str(LOSS_DIST_IMG), caption="Insier Threat Loss Distribution", width="stretch")
 
 if __name__ == "__main__":
     main()
