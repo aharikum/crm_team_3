@@ -191,7 +191,7 @@ def main():
     with metric1:
         st.metric("Total Annual Cost", f"${total_cost:,}")
     with metric2:
-        st.metric("Mitigation Coverage", f"${mitigation_weight*100:.1f}%")
+        st.metric("Mitigation Coverage", f"{mitigation_weight*100:.1f}%")
 
     st.markdown("---")
 
