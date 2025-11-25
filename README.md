@@ -2,7 +2,7 @@
 
 ## Summary
 
-This project implements a comprehensive **insider threat risk quantification framework** for BillyBank, a fictional multinational investment bank. Using the **FAIR** framework, we quantify insider threat risk and produce **Expected Annual Loss (EAL)** estimates for executive decision making.
+This project, done as part of the coursework for 14-817 Cyber Risk Modeling, implements a comprehensive **insider threat risk quantification framework** for BillyBank, a fictional multinational investment bank inspired after JPMC. Using the **FAIR** framework and Monte Carlo simulation, we quantify insider threat risk, produce **Expected Annual Loss (EAL)** estimates for executive decision making, which culminates in an interactive front-end deployed on Streamlit [here](https://billybank-analysis.streamlit.app/).
 
 ---
 
@@ -16,24 +16,30 @@ This project implements a comprehensive **insider threat risk quantification fra
 6. [Key Assumptions](#key-assumptions)
 7. [Installation & Usage](#installation--usage)
 8. [Validation & Calibration](#validation--calibration)
-9. [Refereces & Citations](#references--citations)
+9. [References & Citations](#references--citations)
 
 ---
 
 ## Project Overview
 
-We need to fill this with overwiew of the organisation and what we needed to achieve
-More information can be found in this - [Milestone 1](/Docs/CRM_Project_Milestone_1_%20Executive_Summary.pdf)
+This project models insider-threat cyber risk for a multinational financial institution using a FAIR-aligned framework supported by Monte Carlo simulation. We generate a realistic synthetic dataset modeled on CERT case studies and financial-sector insider incidents, estimate likelihood and impact across roles and regions, and quantify annual loss distributions under different insider-risk conditions. The project includes a role- and region-based risk heatmap, an interactive dashboard for exploring how various mitigation controls affect modeled risk, and a set of cost-informed recommendations tailored to a bank-scale environment. 
+
+Some process artifacts (produced along the way, but not quite our final deliverables) include:
+- [Milestone 1 Executive Summary](/Docs/CRM_Project_Milestone_1_%20Executive_Summary.pdf)
+- [Milestone 2 Progress Report](/Docs/CRM Project Milestone 2.pdf)
+- [RACI Matrix](Docs/CRM RACI Matrix - Sheet1.pdf)
+- [Team Meeting Agenda and Notes](Docs/CRM Project Timeline _ Meeting Agendas.pdf)
+
+Other deliverables (in the Docs/ folder) will be referenced and linked accordingly later in this README. 
 
 ---
 
 ## Pipeline Architecture
 
-The pipeline consists of three integrated stages:
+The pipeline consists of 3 integrated stages:
 1. **Data Generation** (`generator.py`) - Synthetic employee behavioral data
 2. **Risk Analysis** (`risk_analysis.py`) - Probability calculations and heatmap visualization
 3. **Monte Carlo Simulation** (`monte_carlo.py`) - Financial loss estimation with mitigation scenarios
-
 
 ![Architecture Diagram](/Docs/architecture.png)
 
@@ -45,7 +51,7 @@ The pipeline consists of three integrated stages:
 
 ### File: `generator.py`
 
-Generates **synthetic employee behavioral data** simulating 240 working days (approximately one year) for 1,009 users. The number of employee per role breakdown is given below
+Generates **synthetic employee behavioral data** simulating 240 working days (approximately one year) for 1,009 users. The number of employee per role category breakdown is given below:
 
 | Role | Count | Description |
 |------|-------|-------------|
@@ -58,11 +64,11 @@ Generates **synthetic employee behavioral data** simulating 240 working days (ap
 
 For each role, an employee is randomly placed in a region from the set of "NA", "EU" or "APAC".
 
-**Note** The role headcounts in this simulation are intentionally reduced. Tracking 240 days of behavior per employee produces a very large dataset, and using real-world workforce sizes (~50,000 employees) would make the data unnecessarily heavy and computationally expensive.
+**Note:** The role headcounts in this simulation are intentionally reduced. Tracking 240 days of behavior per employee produces a very large dataset, and using real-world workforce sizes (~50,000 employees) would make the data unnecessarily heavy and computationally expensive.
 
 ### Behavioral Features 
 
-Each daily observation includes 9 behavioral indicators:
+Each daily observation includes 9 behavioral indicators, as inspired by what we found from the SEI CERT Insider Threat dataset (referenced linked [here](#references--citations)):
 
 | Feature | Description | Rationale |
 |---------|-------------|-----------|
@@ -126,7 +132,7 @@ Where:
 - **`stress_factor`**: +1 for each: high neuroticism (>65), HR flag, low conscientiousness (<50)
 - **`opportunity`**: 0.001% × opportunity_score (based on behavioral deviations beyond 2σ). The factors affecting oppertunity for a given role is defined in ROLE_OPPORTUNITY_WEIGHTS.
 
-These probabilities are calibrated to produce **0.8% to 5% annual incident rates** per role
+These probabilities are calibrated to produce **0.8% to 5% annual incident rates** per role.
 
 #### Daily Probability by Role
 
@@ -155,9 +161,9 @@ row["files_deleted"]         += random.randint(20, 50)
 
 These patterns are based on the [CERT Insider Threat Research](https://ieeexplore.ieee.org/document/6565236) which identifies role specific exfiltration patterns. 
 
-The Factor identification for BillyBank based off on the factors from the [SEI Dataset](https://www.sei.cmu.edu/library/insider-threat-test-dataset/) can be found in this - [Dataset Info](/Docs/Dataset%20info.pdf)
+The Factor identification for BillyBank based off on the factors from the [SEI Dataset](https://www.sei.cmu.edu/library/insider-threat-test-dataset/) can be found here: [Dataset Info](/Docs/Dataset%20info.pdf)
 
-The output of this script can be found in - [BillyBank Activity](/Outputs/Dataset/billybank_activity.csv)
+The output of this script can be found here: [BillyBank Activity](/Outputs/Dataset/billybank_activity.csv)
 
 ---
 
@@ -169,7 +175,7 @@ Calculates **annual insider threat probability** by role and region from the Bil
 
 ### Probability Calculation
 
- We calculate the probability that an employee becomes a malicious insider at least once during the year, NOT the probability of any given day being malicious.
+We calculate the probability that an employee becomes a malicious insider at least once during the year, NOT the probability of any given day being malicious.
 
 ```
 Annual Probability (per role) = (# users with ≥1 malicious day) / (total users in role)
@@ -255,7 +261,7 @@ For each role:
 
 Losses are mapped to role based on real-world incident data. This can be viewed from the [employee Loss Ranges](/Docs/employee_loss_ranges.csv) file.
 
-### Why do we use a Lognormal Distribution 
+### Rationale to Lognormal Distribution Usage 
 
 Financial losses are modeled with **lognormal distribution** because:
 1. **Right-skewed**: Most incidents cause moderate damage, but catastrophic events create extreme outliers
@@ -396,11 +402,11 @@ generate_monte_carlo_results(mitigation_weight=0.5)
 
 The generated data is calibrated against industry research:
 
-| Metric | Our Model | Industry Benchmark | Source |
-|--------|-----------|-------------------|--------|
-| Annual insider incident rate | 1-5% | 0.5-3% | CERT Insider Threat Center |
-| Contractor elevated risk | ~5.8% | Higher than FTEs | Multiple studies |
-| IT Admin elevated risk | ~2.4% | 2-4× average | Privileged access research |
+| Metric | Our Model | Industry Benchmark |
+|--------|-----------|-------------------|
+| Annual insider incident rate | 1-5% | 0.5-3% |
+| Contractor elevated risk | ~5.8% | Higher than FTEs |
+| IT Admin elevated risk | ~2.4% | 2-4× average |
 
 ### Validation Checks
 
@@ -419,149 +425,95 @@ The generated data is calibrated against industry research:
 
 ---
 
+## Authors
+
+Akhil Harikumar, Paul Hitchcox, Shyon Ghahghahi, Vy Tran (Team 3)
+
+## Acknowledgments
+
+Adit Verma, Doc Rock
+
+---
+
 ## References & Citations
 
-- cert
-- sources
+### SEI CERT Insider Threat Dataset
+
+https://www.kaggle.com/datasets/nitishabharathi/cert-insider-threat
+https://www.sei.cmu.edu/library/insider-threat-test-dataset/ 
+
+### Other Links Referenced
   
-  https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html
-
-  https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
-
-  https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview
-
-  https://learn.microsoft.com/en-us/azure/confidential-ledger/overview
-
-  https://cloud.google.com/storage/docs/bucket-lock
-
-  https://datatracker.ietf.org/doc/html/rfc5848
-
-  https://www.splunk.com/en_us/products/pricing/faqs/cyber-security.html
-
-  https://www.microsoft.com/en-us/security/business/siem-and-xdr/microsoft-sentinel
-
-  https://cloud.google.com/security/products/security-operations
-
-  https://www.elastic.co/docs/solutions/security
-
-  https://www.ibm.com/products/guardium-data-protection
-
-  https://www.imperva.com/products/data-activity-monitoring/
-
-  https://www.varonis.com/data-security-platform
-
-  https://docs.cyberark.com/pam-self-hosted/latest/en/content/pasimp/privileged-session%20manager-introduction.htm
-
-  https://docs.delinea.com/online-help/secret-server/session-recording/index.htm
-
-  https://www.beyondtrust.com/docs/privileged-identity/app-launcher-and-recording/configure/session-recording-settings.htm
-
-  https://support.oneidentity.com/technical-documents/safeguard-for-privileged-sessions/7.3.1/administration-guide
-
-  https://learn.microsoft.com/en-us/purview/insider-risk-management
-
-  https://www.broadcom.com/products/cybersecurity/information-protection/data-loss-prevention
-
-  https://docs.netskope.com/en/data-loss-prevention/
-
-  https://pages.nist.gov/800-63-4/sp800-63b.html
-
-  https://support.docusign.com/s/document-item?topicId=gpa1578456339545.html
-
-  https://nvd.nist.gov/800-53
-
-  https://www.cisa.gov/insider-threat-mitigation; https://www.cyberark.com/resources
-
-  https://www.microsoft.com/en-us/security/business/risk-management/insider-risk-management
-
-  https://www.broadcom.com/products/cybersecurity/information-protection/data-loss-prevention
-
-  https://www.splunk.com/en_us/data-insider/what-is-user-and-entity-behavior-analytics.html
-
-  https://cloud.google.com/chronicle
-
-  https://pages.nist.gov/800-63-4/sp800-63b.html
-
-  https://fidoalliance.org
-
-  https://www.ibm.com/products/guardium-data-protection
-
-  https://www.imperva.com/learn/data-security/database-activity-monitoring-dam/
-
-  https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
-
-  https://learn.microsoft.com/en-us/azure/confidential-ledger/overview
-
-  https://support.docusign.com
-
-  https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-3.pdf
-
-  https://datatracker.ietf.org/doc/html/rfc5848
-
-  https://nvd.nist.gov/800-53
-
-  https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final
-
-  https://en.wikipedia.org/wiki/2012_JPMorgan_Chase_trading_loss
-
-  https://elischolar.library.yale.edu/cgi/viewcontent.cgi?article=1013&context=journal-of-financial-crises
-
-  https://www.federalreserve.gov/newsevents/pressreleases/enforcement20240314a.htm
-
-  https://www.cftc.gov/PressRoom/PressReleases/8914-24
-
-  https://www.justice.gov/usao-edny/pr/former-jp-morgan-chase-bank-employee-sentenced-four-years-prison-selling-customer
-
-  https://www.reuters.com/article/idUSBREA4D0G3/
-
-  https://www.sec.gov/files/litigation/admin/2018/34-83858.pdf
-
-  https://www.sfchronicle.com/bayarea/article/bay-area-bank-worker-charged-stealing-nearly-1-20363841.php
-
-  https://apnews.com/article/53ef64672b07976ae5d3960e75246285
-
-  https://www.justice.gov/usao-nj/pr/td-bank-insider-pleads-guilty-accepting-bribes-fraudulently-open-more-100-bank-accounts
-
-  https://www.justice.gov/archives/opa/pr/td-bank-insider-arrested-and-charged-facilitating-money-laundering
-
-  https://www.justice.gov/usao-wdmo/pr/former-bank-employee-pleads-guilty-24-million-embezzlement-scheme
-
-  https://www.fayettenewspapers.com/stories/bond-company-sues-exchange-bank-over-money-embezzled-by-former-employee%2C165810
-
-  https://www.justice.gov/usao-ct/pr/bank-general-counsel-sentenced-4-years-prison-74-million-embezzlement-scheme
-
-  https://www.irs.gov/compliance/criminal-investigation/bank-general-counsel-pleads-guilty-to-offenses-stemming-from-7-point-4-million-embezzlement-scheme
-
-  https://abcnews.go.com/US/bank-manager-sentenced-position-steal-200000-directly-customer/story?id=115595925
-
-  https://www.wsj.com/finance/regulation/morgan-stanley-is-fined-over-first-republic-insider-sales-48ad84bf
-
-  https://www.americanbanker.com/news/finwise-waited-a-year-to-disclose-a-breach-affecting-689-000
-
-  https://www.bankingdive.com/news/finwise-data-breach-former-employee-american-first-court-plaintiff-689k/761026/
-
-  https://www.theguardian.com/business/2008/jan/24/creditcrunch.banking
-
-  https://en.wikipedia.org/wiki/2008_Soci%C3%A9t%C3%A9_G%C3%A9n%C3%A9rale_trading_loss
-
-  https://en.wikipedia.org/wiki/2011_UBS_rogue_trader_scandal
-
-  https://www.fca.org.uk/publication/final-notices/ubs-ag.pdf
-
-  https://www.investopedia.com/ask/answers/08/nick-leeson-barings-bank.asp
-
-  https://en.wikipedia.org/wiki/John_Rusnak
-
-  https://www.justice.gov/archive/dag/cftf/chargingdocs/allfirst.pdf
-
-  https://www.latimes.com/archives/la-xpm-1995-09-27-fi-50502-story.html
-
-  https://www.theguardian.com/business/2020/jul/24/goldman-sachs-settle-1mdb-corruption-scandal-malaysia
-
-  
-Prompts from GPT
-
-Insider Threat Table Prompts
+https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
+https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview
+https://learn.microsoft.com/en-us/azure/confidential-ledger/overview
+https://cloud.google.com/storage/docs/bucket-lock
+https://datatracker.ietf.org/doc/html/rfc5848
+https://www.splunk.com/en_us/products/pricing/faqs/cyber-security.html
+https://www.microsoft.com/en-us/security/business/siem-and-xdr/microsoft-sentinel
+https://cloud.google.com/security/products/security-operations
+https://www.elastic.co/docs/solutions/security
+https://www.ibm.com/products/guardium-data-protection
+https://www.imperva.com/products/data-activity-monitoring/
+https://www.varonis.com/data-security-platform
+https://docs.cyberark.com/pam-self-hosted/latest/en/content/pasimp/privileged-session%20manager-introduction.htm
+https://docs.delinea.com/online-help/secret-server/session-recording/index.htm
+https://www.beyondtrust.com/docs/privileged-identity/app-launcher-and-recording/configure/session-recording-settings.htm
+https://support.oneidentity.com/technical-documents/safeguard-for-privileged-sessions/7.3.1/administration-guide
+https://learn.microsoft.com/en-us/purview/insider-risk-management
+https://www.broadcom.com/products/cybersecurity/information-protection/data-loss-prevention
+https://docs.netskope.com/en/data-loss-prevention/
+https://pages.nist.gov/800-63-4/sp800-63b.html
+https://support.docusign.com/s/document-item?topicId=gpa1578456339545.html
+https://nvd.nist.gov/800-53
+https://www.cisa.gov/insider-threat-mitigation; https://www.cyberark.com/resources
+https://www.microsoft.com/en-us/security/business/risk-management/insider-risk-management
+https://www.broadcom.com/products/cybersecurity/information-protection/data-loss-prevention
+https://www.splunk.com/en_us/data-insider/what-is-user-and-entity-behavior-analytics.html
+https://cloud.google.com/chronicle
+https://pages.nist.gov/800-63-4/sp800-63b.html
+https://fidoalliance.org
+https://www.ibm.com/products/guardium-data-protection
+https://www.imperva.com/learn/data-security/database-activity-monitoring-dam/
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html
+https://learn.microsoft.com/en-us/azure/confidential-ledger/overview
+https://support.docusign.com
+https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63-3.pdf
+https://datatracker.ietf.org/doc/html/rfc5848
+https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final
+https://en.wikipedia.org/wiki/2012_JPMorgan_Chase_trading_loss
+https://elischolar.library.yale.edu/cgi/viewcontent.cgi?article=1013&context=journal-of-financial-crises
+https://www.federalreserve.gov/newsevents/pressreleases/enforcement20240314a.htm
+https://www.cftc.gov/PressRoom/PressReleases/8914-24
+https://www.justice.gov/usao-edny/pr/former-jp-morgan-chase-bank-employee-sentenced-four-years-prison-selling-customer
+https://www.reuters.com/article/idUSBREA4D0G3/
+https://www.sec.gov/files/litigation/admin/2018/34-83858.pdf
+https://www.sfchronicle.com/bayarea/article/bay-area-bank-worker-charged-stealing-nearly-1-20363841.php
+https://apnews.com/article/53ef64672b07976ae5d3960e75246285
+https://www.justice.gov/usao-nj/pr/td-bank-insider-pleads-guilty-accepting-bribes-fraudulently-open-more-100-bank-accounts
+https://www.justice.gov/archives/opa/pr/td-bank-insider-arrested-and-charged-facilitating-money-laundering
+https://www.justice.gov/usao-wdmo/pr/former-bank-employee-pleads-guilty-24-million-embezzlement-scheme
+https://www.fayettenewspapers.com/stories/bond-company-sues-exchange-bank-over-money-embezzled-by-former-employee%2C165810
+https://www.justice.gov/usao-ct/pr/bank-general-counsel-sentenced-4-years-prison-74-million-embezzlement-scheme
+https://www.irs.gov/compliance/criminal-investigation/bank-general-counsel-pleads-guilty-to-offenses-stemming-from-7-point-4-million-embezzlement-scheme
+https://abcnews.go.com/US/bank-manager-sentenced-position-steal-200000-directly-customer/story?id=115595925
+https://www.wsj.com/finance/regulation/morgan-stanley-is-fined-over-first-republic-insider-sales-48ad84bf
+https://www.americanbanker.com/news/finwise-waited-a-year-to-disclose-a-breach-affecting-689-000
+https://www.bankingdive.com/news/finwise-data-breach-former-employee-american-first-court-plaintiff-689k/761026/
+https://www.theguardian.com/business/2008/jan/24/creditcrunch.banking
+https://en.wikipedia.org/wiki/2008_Soci%C3%A9t%C3%A9_G%C3%A9n%C3%A9rale_trading_loss
+https://en.wikipedia.org/wiki/2011_UBS_rogue_trader_scandal
+https://www.fca.org.uk/publication/final-notices/ubs-ag.pdf
+https://www.investopedia.com/ask/answers/08/nick-leeson-barings-bank.asp
+https://en.wikipedia.org/wiki/John_Rusnak
+https://www.justice.gov/archive/dag/cftf/chargingdocs/allfirst.pdf
+https://www.latimes.com/archives/la-xpm-1995-09-27-fi-50502-story.html
+https://www.theguardian.com/business/2020/jul/24/goldman-sachs-settle-1mdb-corruption-scandal-malaysia
+
+### Prompts from GPT
+
+#### Insider Threat Table Prompts
 
 <img width="562" height="148" alt="Screenshot 2025-11-24 at 9 52 31 PM" src="https://github.com/user-attachments/assets/983f9455-cab9-4baf-9fd8-d7cf22537163" />
 
@@ -573,8 +525,7 @@ This is what got us started with the cases, and then found sources based on them
 
 <img width="589" height="145" alt="Screenshot 2025-11-24 at 9 52 07 PM" src="https://github.com/user-attachments/assets/57447a19-1124-44f4-9651-1d1c3e3d0875" />
 
-
-Software Solutions Prompts
+#### Software Solutions Prompts
 
 <img width="545" height="97" alt="Screenshot 2025-11-24 at 9 58 40 PM" src="https://github.com/user-attachments/assets/dc7a4fcf-a191-4b99-96c5-5d7ab4cd6965" />
 
@@ -588,9 +539,6 @@ Partial Output:
 
 We went to the sources to confirm this informaton afterwards and modified the tables.
 
-
-
-
-
-
 ---
+
+[Go to top](#table-of-contents)
