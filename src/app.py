@@ -113,9 +113,10 @@ def main():
         <h4>Insigts from Dataset</h4>
         <strong>Highest Risk Roles:</strong>
         <ul>
-            <li>Contractors (~2.09%)</li>
-            <li>Exec Assistants (~1.44%)</li>
-            <li>IT Admins (~1.36%)</li>
+            <li>IT Admins in APAC (5.88%)</li>
+            <li>Traders in EU (5.88%)</li>
+            <li>Contractors in NA (4.44%)</li>
+            <li>Traders in NA (3.23%)</li>
         </ul>
         
         <strong>Risk Factors:</strong>
