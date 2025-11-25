@@ -559,11 +559,21 @@ The generated data is calibrated against industry research:
   https://www.theguardian.com/business/2020/jul/24/goldman-sachs-settle-1mdb-corruption-scandal-malaysia
 
   
-  
-  
-  
-
 Prompts from GPT
+
+Insider Threat Table Prompts
+
+<img width="562" height="148" alt="Screenshot 2025-11-24 at 9 52 31 PM" src="https://github.com/user-attachments/assets/983f9455-cab9-4baf-9fd8-d7cf22537163" />
+This is what got us started with the cases, and then found sources based on them and began creating notes from sources that are lsited above.
+
+<img width="643" height="497" alt="Screenshot 2025-11-24 at 9 51 35 PM" src="https://github.com/user-attachments/assets/dac79402-14f2-49b9-b262-dae298f4b1d0" />
+
+<img width="575" height="142" alt="Screenshot 2025-11-24 at 9 52 17 PM" src="https://github.com/user-attachments/assets/4633cd5c-baf3-40eb-83a5-7ed6493ea44e" />
+
+<img width="589" height="145" alt="Screenshot 2025-11-24 at 9 52 07 PM" src="https://github.com/user-attachments/assets/57447a19-1124-44f4-9651-1d1c3e3d0875" />
+
+
+
 
 
 
