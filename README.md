@@ -574,6 +574,19 @@ This is what got us started with the cases, and then found sources based on them
 <img width="589" height="145" alt="Screenshot 2025-11-24 at 9 52 07 PM" src="https://github.com/user-attachments/assets/57447a19-1124-44f4-9651-1d1c3e3d0875" />
 
 
+Software Solutions Prompts
+
+<img width="545" height="97" alt="Screenshot 2025-11-24 at 9 58 40 PM" src="https://github.com/user-attachments/assets/dc7a4fcf-a191-4b99-96c5-5d7ab4cd6965" />
+This was the entry point, and it gave a lot of sources as output. From there, we researched them and used topics in the class to justify the weights that we came up with.
+
+Partial Output:
+
+<img width="885" height="433" alt="Screenshot 2025-11-24 at 10 02 35 PM" src="https://github.com/user-attachments/assets/91cc83ae-e9b3-4d03-871c-dc173dc077a0" />
+
+<img width="538" height="76" alt="Screenshot 2025-11-24 at 10 00 11 PM" src="https://github.com/user-attachments/assets/455ae921-d71e-4c6c-a532-fc82167cefb8" />
+We went to the sources to confirm this informaton afterwards and modified the tables.
+
+
 
 
 
