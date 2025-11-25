@@ -4,7 +4,6 @@ import streamlit as st
 from monte_carlo import generate_monte_carlo_results
 import csv
 import re
-import plotly.graph_objects as go
 
 st.set_page_config(
     page_title="BillyBank Insider Risk Dashboard",
