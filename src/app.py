@@ -104,11 +104,16 @@ def main():
 
     with right_col:
         st.write(f"**Total Annual Cost of Selected Controls:** \${total_cost:,}")
-        simulate_col, deselect_col = st.columns([0.15, 0.85])
+        simulate_col, select_col, deselect_col = st.columns([0.15, 0.15, 0.7])
         with simulate_col:
             run_clicked = st.button("Simulate", type="primary")
+        with select_col:
+            select_all = st.button("Select all", type="secondary", on_click=lambda: [
+                st.session_state.update({meta["key"]: True})
+                for _, meta in SOFTWARE_SOLUTIONS.items()
+            ])
         with deselect_col:
-            deselect = st.button("Deselect all", type="secondary", on_click=lambda: [
+            deselect_all = st.button("Deselect all", type="secondary", on_click=lambda: [
                 st.session_state.update({meta["key"]: False})
                 for _, meta in SOFTWARE_SOLUTIONS.items()
             ])
